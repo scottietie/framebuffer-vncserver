@@ -2,17 +2,16 @@
 
 VNC server for Linux framebuffer devices.
 
-[![Travis](http://img.shields.io/travis/ponty/framebuffer-vncserver.svg)] (https://travis-ci.org/ponty/framebuffer-vncserver)
+[![Build Status](https://travis-ci.org/ponty/framebuffer-vncserver.svg?branch=master)](https://travis-ci.org/ponty/framebuffer-vncserver)
 
-The goal is to check remote embedded Linux systems without X, so only the remote display is implemented. 
-(no input, no file transfer,..)
+The goal is to access remote embedded Linux systems without X.
+Implemented features: remote display, touchscreen
+Not implemented: keyboard, file transfer, ..
+
+Remote display image is not perfect in some color configurations.
 
 The code is based on a LibVNC example for Android:
-https://github.com/LibVNC/libvncserver/blob/master/examples/android/jni/fbvncserver.c
-
-All input handling was removed, command-line parameters port and fbdev were added.
-In 32 bit color only half of the screen was displayed, so I hacked the code to show the full screen,
-but I don't know how it works.
+https://github.com/LibVNC/libvncserver/blob/master/examples/androidvncserver.c
 
 ### build
 
@@ -39,8 +38,9 @@ Using qmake:
 ### command-line help 
 
 	# framebuffer-vncserver -h
-	framebuffer-vncserver [-f device] [-p port] [-h]
-	-p port: VNC port, default is 5900
-	-f device: framebuffer device node, default is /dev/fb0
-	-h : print this help
+        framebuffer-vncserver [-f device] [-p port] [-t touchscreen] [-h]
+        -p port: VNC port, default is 5900
+        -f device: framebuffer device node, default is /dev/fb0
+        -t device: touchscreen device node (example:/dev/input/event2)
+        -h : print this help
  
